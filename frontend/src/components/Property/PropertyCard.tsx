@@ -1,50 +1,44 @@
-import { Card, CardBody, Center, Flex, Stack, Text } from '@chakra-ui/react';
+import { Flex, Stack, Stat, StatLabel, StatNumber } from '@chakra-ui/react';
+import { IconHome } from '@tabler/icons';
 import { Property } from '../../types/property';
-import { IconHome, IconPencil, IconTrash } from '@tabler/icons';
-interface PropertyCardProps {
-    property: Property;
-    onClick?: (property: Property) => void;
-    onDeleteClick: (property: Property) => void;
-    onEditClick?: (property: Property) => void;
-}
+import { Card, CardProps } from '../UI/Card';
 
-function PropertyCard({
-    property,
-    onClick,
-    onDeleteClick,
-    onEditClick,
-}: PropertyCardProps) {
+function PropertyCard(props: CardProps<Property>) {
+    console.log(props);
+
     return (
-        <Card>
-            <CardBody>
-                <Flex gap={2}>
-                    <IconTrash
-                        color="red"
-                        cursor="pointer"
-                        onClick={() => onDeleteClick(property)}
-                    />
-                    {onEditClick && (
-                        <IconPencil
-                            cursor="pointer"
-                            onClick={() => onEditClick(property)}
-                        />
+        <Card
+            {...props}
+            icon={(
+                <IconHome />
+            )}
+        >
+            <Stack>
+                <Flex>
+                    <Stat>
+                        <StatLabel>
+                            Location
+                        </StatLabel>
+                        <StatNumber>
+                            {props.model.location}
+                        </StatNumber>
+                    </Stat>
+                    {props.model.tenants && (
+                        <Stat>
+                            <StatLabel>
+                                Tenants
+                            </StatLabel>
+                            <StatNumber>
+                                {props.model.tenants.length}
+                            </StatNumber>
+                        </Stat>
                     )}
                 </Flex>
-                <Center
-                    cursor={onClick ? 'pointer' : undefined}
-                    onClick={() => onClick?.(property)}>
-                    <Flex direction="column">
-                        <IconHome size={128} />
-                        <Stack spacing={2}>
-                            <Text align="center" fontWeight="bold">
-                                {property.name}
-                            </Text>
-                        </Stack>
-                    </Flex>
-                </Center>
-            </CardBody>
+            </Stack>
+
         </Card>
     );
+
 }
 
 export default PropertyCard;

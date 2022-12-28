@@ -180,9 +180,10 @@ function PropertyPage() {
                             {property.tenants.map((tenant) => (
                                 <GridItem key={tenant.id}>
                                     <TenantCard
-                                        tenant={tenant}
+                                        model={tenant}
+                                        title={tenant.name}
                                         onClick={onTenantCardClick}
-                                        onDeleteClick={(tenant) => {
+                                        onDelete={(tenant) => {
                                             setSelectedTenant(tenant);
                                             openConfirmRemoveModal();
                                         }}

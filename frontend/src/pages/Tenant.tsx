@@ -71,6 +71,7 @@ function TenantPage() {
     } = useDisclosure();
 
     const properties = useMemo(() => tenant?.properties, [tenant]);
+    console.log(properties);
 
     const [selectedProperty, setSelectedProperty] = useState<Property | null>(
         null,
@@ -241,8 +242,9 @@ function TenantPage() {
                                     {properties.map((property) => (
                                         <GridItem key={property.id}>
                                             <PropertyCard
-                                                property={property}
-                                                onDeleteClick={() => {
+                                                model={property}
+                                                title={property.name}
+                                                onDelete={() => {
                                                     setSelectedProperty(
                                                         property,
                                                     );

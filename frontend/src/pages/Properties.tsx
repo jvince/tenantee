@@ -158,13 +158,14 @@ function Properties() {
                         {properties.map((property) => (
                             <GridItem key={property.id}>
                                 <PropertyCard
-                                    property={property}
+                                    model={property}
+                                    title={property.name}
                                     onClick={onPropertyCardClick}
-                                    onDeleteClick={(property) => {
+                                    onDelete={(property) => {
                                         setSelectedProperty(property);
                                         openConfirmModal();
                                     }}
-                                    onEditClick={(property) => {
+                                    onEdit={(property) => {
                                         setSelectedProperty(property);
                                         openEditPropertyModal();
                                     }}

@@ -11,7 +11,7 @@ export interface Property {
     description?: string;
     location: string;
     price: Price;
-    tenants: Tenant[];
+    tenants?: Tenant[];
     monthly_revenue: Price;
     due_date_modifier: number;
 }
